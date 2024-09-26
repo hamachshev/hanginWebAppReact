@@ -1,10 +1,32 @@
 import React, { useState, useEffect } from 'react';
-import {Link} from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
 import Cookies from 'js-cookie';
 
+
+var socket
+const handleNewChat = (e) => {
+  const msg = {
+    
+      command: "message",
+      identifier: JSON.stringify({
+        channel: 'ChatsChannel'
+    }),
+      "data": JSON.stringify({
+        action: 'createChat'
+    })
+      
+  }
+  
+  socket.send(JSON.stringify(msg))
+}
+
 export default function Chats(){
+    const [chats, setChats] = useState([])
+    const navigate = useNavigate()
+
     useEffect(()=>{
-        const socket = new WebSocket("ws://localhost:3000/cable?access_token=" + Cookies.get('auth_token')) 
+      
+        socket = new WebSocket("ws://localhost:3000/cable?access_token=" + Cookies.get('auth_token')) 
         socket.onopen = function (e){
           console.log("connected to websocket")
           const msg = {
@@ -24,9 +46,41 @@ export default function Chats(){
           }
           console.log("FROM RAILS: ", msg);
           
-          // // Renders any newly created messages onto the page.
-          // if (msg.message) {
-          //     renderMessage(msg.message)
-          // }
+          
+          if (msg.message) {
+              if(msg.message.chats){
+                setChats(msg.message.chats)
+                console.log(msg.message.chats)
+              }
+              if(msg.message.chat){
+                setChats((chats)=>[...chats, msg.message.chat.id])
+              }
+              if(msg.message.ownChat){
+                // setChats((chats)=>[...chats, msg.message.ownChat])
+                navigate("/chat/" + msg.message.ownChat)
+              }
+              if(msg.message.deleteChat){
+            
+                setChats((chats)=>chats.filter((chat)=>chat != msg.message.deleteChat))
+                
+              }
+          }
+          
     }},[])
+  
+
+    return (
+      <>
+      <ul>
+      {chats.map((chat)=>{
+        return (
+          <li key={chat} ><Link to={"/chat/" + chat}>{chat}</Link></li>
+        )
+      })}
+      </ul>
+      <button onClick={handleNewChat}>
+        New Chat
+      </button>
+      </>
+    )
 }
