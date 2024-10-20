@@ -20,7 +20,7 @@ const handleNewChat = (e) => {
   socket.send(JSON.stringify(msg))
 }
 
-export default function Chats(){
+export default function ChatsPage(){
     const [chats, setChats] = useState([])
     const navigate = useNavigate()
 

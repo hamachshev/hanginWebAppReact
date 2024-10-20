@@ -4,7 +4,7 @@ import Cookies from 'js-cookie';
 
 var socket
 
-export default function Chat(){
+export default function ChatPage(){
 
     const {id} = useParams()
     const [outgoingMessage, setOutgoingMessage] = useState('')

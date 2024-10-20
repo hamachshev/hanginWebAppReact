@@ -1,0 +1,358 @@
+@background-color: #08204F;
+
+
+
+html, body, #root{
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    padding: none;
+    background-color: @background-color;
+    box-sizing: border-box;
+}
+
+.logo {
+    width: 105.261px;
+    height: 34.164px;
+    padding-left: 20px;
+    flex-shrink: 0;
+    
+}
+
+.settings {
+    width: 53.635px;
+    height: 53.635px;
+    flex-shrink: 0;
+    background-color: #063F78;
+    border-radius: 100px;
+}
+.header { 
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    margin-left: 0;
+    flex: 0 1 10%;
+    
+}
+
+
+.flexbox-container{
+   padding: 40px;
+   padding-top: 15px;
+   padding-bottom: 50px;
+    box-sizing: border-box; //no idea why need this
+    // background-color: pink;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    width: 100%;
+
+}
+
+.bottomBox {
+ /* Ensure padding is part of width calculation */
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    // background-color: rgb(39, 161, 26);
+    width: 100%;
+
+    flex: 0 1 90%;
+}
+
+.sidebar {
+    // display: flex;
+    // flex-direction: column;
+    // align-items: center;
+    flex: 0 0 210px;
+    background-color: #032E66;
+    border-radius: 24px;
+    padding: 30px;
+    padding-top: 20px;
+    overflow:auto; 
+    margin-right: 50px;
+    height: 590px;
+
+  
+}
+
+
+
+.message-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: #032E66;
+    width: 808.831px;
+    border-radius: 24px;
+    padding: 30px;
+    margin-left: 14.475px;
+    height: 590px;
+    
+}
+
+.chat{
+    margin-top: 15px;
+    border-radius: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 53px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: medium;
+    color: #DAEFFB;
+    // flex: 0 1 9%;
+    width: 100%;
+    background-color: #063F78;
+}
+
+.add-new-chat-box {
+    display: none;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+
+.add-new-chat{
+    height: auto;
+    width: auto;
+    padding: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 50px;
+    background-color: #063F78;
+    font-family:Arial, Helvetica, sans-serif;
+    font-size: medium;
+    color: #DAEFFB;
+}
+
+.message-stream {
+    flex: 0 1 93%;
+  
+    padding: 10px;
+    margin-bottom: 20px;
+    display: flex;
+    // justify-content: end;
+    flex-direction: column; 
+    overflow-y: scroll; 
+
+}
+
+.message-stream > :first-child {
+    margin-top: auto !important; // https://stackoverflow.com/questions/36130760/use-justify-content-flex-end-and-to-have-vertical-scrollbar#:~:text=128,the%20first%20child
+}
+
+
+.message-right {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    height: auto;
+    width: 100%;
+    margin-top: 5px;
+    margin-bottom: 5px;
+
+}
+
+.single-message-box-right{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 0 1 content;
+    padding: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    
+    background-color: #016394;
+    border-radius: 24px;
+    height: 2em;
+}
+
+.message-left {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    height: auto;
+    width: 100%;
+    margin-top: 5px;
+    margin-bottom: 5px;
+
+}
+
+.single-message-box-left{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 0 1 content;
+    padding: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    
+    background-color: #063F78;
+    border-radius: 24px;
+    height: 2em;
+}
+.message {
+    font-family:Arial, Helvetica, sans-serif;
+    font-size: medium;
+    color: #DAEFFB;
+}
+
+
+.inputbox {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex: 0 1 8.5%;
+    width: 100%;
+    // background-color: #08204F;
+    
+}
+.input {
+    flex: 0 1 100%;
+    border: none;
+    background-color: #063F78;
+    border-radius: 24px;
+    padding-left: 20px;
+    font-family:Arial, Helvetica, sans-serif;
+    font-size: medium;
+    color: #DAEFFB;
+}
+
+.input:hover {
+    outline-style: solid;
+    outline-color: #f0f0f0;
+    outline-width: 1.5px;
+}
+
+.input:focus {
+    outline-style: solid;
+    outline-color: white;
+    outline-width: 2px;
+
+}
+
+.send-button {
+    flex: 0 1 50px;
+    background-color: #063F78;
+    border-radius: 24px;
+    margin-left: 20px;
+}
+
+
+.modal {
+    padding: 20px;
+   display: flex;
+   flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    background-color: #063F78;
+ 
+    border-radius: 12px;
+
+    width: 350px * 1.2;
+    height: 200px * 1.2;
+
+    p {
+        font-family: Arial, Helvetica, sans-serif;
+        color: #DAEFFB;
+        font-weight: bold;
+        font-size: larger;
+        flex: 0 1 content;
+        margin-bottom: -15px;
+        
+    }
+
+    img {
+        flex: 0 1 content;
+        max-height: 50px;
+        margin-bottom: 10px;
+    }
+
+    input {
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: medium;
+        border-radius: 20px;
+        flex: 0 1 content;
+        background-color: #032E66;
+        border: none;
+        padding: 10px;
+        text-align: center;
+        width: auto;
+        margin-bottom: -15px;
+        color: #DAEFFB;
+    }
+
+    input::placeholder {
+        color: #9BABB5;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: small;
+        font-weight: bolder;
+        text-align: center;
+    }
+
+    input:focus {
+        outline: none;
+    }
+
+    input:focus::placeholder {
+        color: transparent;
+    }
+
+    button {
+        color: #DAEFFB;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: medium;
+        font-weight: bolder;
+        border-radius: 20px;
+        padding: 10px;
+        padding-left: 25px;
+        padding-right: 25px;
+        background-color: #016394;
+        border: none;
+    }
+
+    button:hover {
+        background-color: #03527a;
+        cursor: pointer;
+    }
+
+   
+
+    
+  }
+
+  .modal-background {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    position: absolute;
+    backdrop-filter: blur(10px);
+  }
+
+  .selectedChat{
+    outline-style: solid;
+    outline-color: white;
+    outline-width: 2px;
+  }
+  
+  @media only screen and (max-width: 950px) {
+
+
+    .sidebar{
+        display: none;
+    }
+
+  }
