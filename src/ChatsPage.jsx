@@ -26,7 +26,7 @@ export default function ChatsPage(){
 
     useEffect(()=>{
       
-        socket = new WebSocket("ws://localhost:3000/cable?access_token=" + Cookies.get('auth_token')) 
+        socket = new WebSocket(import.meta.env.VITE_WEBSOCKET_URL + Cookies.get('auth_token')) 
         socket.onopen = function (e){
           console.log("connected to websocket")
           const msg = {

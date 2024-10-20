@@ -12,7 +12,7 @@ export default function ModalContent({onClose, titleText, buttonText, fieldText,
   };
 
   async function send_phone_number(e){
-    const  res = await fetch('http://localhost:3000/create?number=' + inputValue, {
+    const  res = await fetch(`${import.meta.env.VITE_BASE_URL}/create?number=` + inputValue, {
       method: 'POST',
     })
 
@@ -24,7 +24,7 @@ export default function ModalContent({onClose, titleText, buttonText, fieldText,
   }
 
   async function send_code(e){
-    const res = await fetch('http://localhost:3000/oauth/token?client_id=qCD2AlC5e9r4A2qnwZ6JLhBzoGjh3PT3_0sNPHvU4bg&client_secret=rPQa4a33w1GiJZyBKL3x2dUIVIw1nmOhS5_HvFf4_LU&grant_type=password&number=' + number + '&code=' + inputValue, {
+    const res = await fetch(`${import.meta.env.VITE_BASE_URL}/oauth/token?client_id=${import.meta.env.VITE_CLIENT_ID}&client_secret=${import.meta.env.VITE_CLIENT_SECRET}&grant_type=password&number=` + number + '&code=' + inputValue, {
       method: 'POST',
     })
     const json = await res.json();
