@@ -41,7 +41,7 @@ export default function MessagesBox({selectedChat}){
             console.log("YOUVE GOT Mail!")
               console.log(msg.message.message.body)
               if(msg.message.message){
-                setMessages((messages) => [...messages, msg.message.message.body]);
+                setMessages((messages) => [...messages, msg.message.message]);
               }
           }
 
@@ -99,9 +99,9 @@ export default function MessagesBox({selectedChat}){
                     </div>
                     {messages.map((message, key)=>{ //its item, index for some reason not key value
             return (
-            <div className="message-right" key={key}>
-                <div className="single-message-box-right">
-                    <p className="message"> {message}</p>
+            <div className={`message-${message.user_uuid === Cookies.get('uuid')? "right" : "left"}`} key={key}>
+                <div className={`single-message-box-${message.user_uuid === Cookies.get('uuid')? "right" : "left"}`}>
+                    <p className="message"> {message.body}</p>
                 </div>
             </div>
             )
