@@ -14,11 +14,7 @@ const App = () => {
 
       
   <Routes>
-    <Route path='/' element = {<GetOTP/>}/>
-    <Route path='/submit' element = {<SubmitOTP />}/>
-    <Route path='/chats' element = {<ChatsPage/>}/>
-    <Route path='/chat/:id' element = {<ChatPage/>}/>
-    <Route path='testing' element = {<Testing/>}/>
+    <Route path='/' element = {<Testing/>}/>
   </Routes>
   
   </Router>
