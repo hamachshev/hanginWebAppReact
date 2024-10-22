@@ -8,10 +8,10 @@ import MessagesBox from "./MessagesBox";
 import Cookies from 'js-cookie';
 
 export default function Testing(){
-    const [showGetOTP, setShowGetOTP] = useState(true)
+    const [showGetOTP, setShowGetOTP] = useState(false)
     const [showInputOTP, setShowInputOTP] = useState(false)
     const [number, setNumber] = useState(0)
-    const [getChats, setGetChats] = useState(false)
+    const [getChats, setGetChats] = useState(null)
     const [chats, setChats] = useState([])
     const [socket, setSocket] = useState()
     const [selectedChat, setSelectedChat] = useState(null)
@@ -34,6 +34,39 @@ export default function Testing(){
         socket.onmessage = function(e) {            
           const msg = JSON.parse(e.data);
           
+          if(msg.type === "disconnect" && msg.reason === "unauthorized"){
+            async function fetchAuthIfRefresh() {
+              //     //this function should be called anytime we send in the authcode
+                  
+                    const timestamp = new Date().getTime() // https://stackoverflow.com/questions/8047616/get-a-utc-timestamp
+                    const url =`${import.meta.env.VITE_BASE_URL}oauth/token?client_id=${import.meta.env.VITE_CLIENT_ID}&client_secret=${import.meta.env.VITE_CLIENT_SECRET}&grant_type=refresh_token&refresh_token=${Cookies.get("refresh_token")}`
+                    console.log(url)
+                    if(parseInt(Cookies.get("created_at")) + parseInt(Cookies.get("expires_in")) < timestamp  /* seconds in a day*/){
+                      const res = await fetch(url, {
+                        method: 'POST',
+                      })
+                      const json = await res.json();
+                      console.log(json)
+                      if(json.access_token){
+                        Cookies.set('auth_token', json.access_token, {expires: 30})
+                        Cookies.set('uuid', Cookies.get('uuid'), {expires: 30})
+                        Cookies.set('created_at', json.created_at, {expires: 30})
+                        Cookies.set('expires_in', json.expires_in, {expires: 30})
+                        Cookies.set('refresh_token', json.refresh_token, {expires: 30})
+                        setShowGetOTP(false)
+                      }
+                    }
+                    return
+                
+                }
+                if(Cookies.get('auth_token') === "undefined" || Cookies.get('auth_token') === undefined){
+                  
+                  setShowGetOTP(true)
+                  
+                } else {
+                  fetchAuthIfRefresh();
+                }
+          }
           
           if (msg.type === "ping") {
               return;
@@ -47,7 +80,7 @@ export default function Testing(){
                 console.log(msg.message.chats)
               }
               if(msg.message.chat){
-                setChats((chats)=>[...chats, msg.message.chat.id])
+                setChats((chats)=>[msg.message.chat.id, ...chats])
               }
               if(msg.message.ownChat){
                 setChats((chats)=>[...chats, msg.message.ownChat])
@@ -63,6 +96,7 @@ export default function Testing(){
           setSocket(socket);
           
     }},[getChats])
+
 
 
     return(

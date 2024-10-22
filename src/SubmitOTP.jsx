@@ -13,7 +13,7 @@ const {state} = useLocation()
 const navigate = useNavigate()
 
  async function send_number(e){
-    const res = await fetch(`${import.meta.env.VITE_BASE_URL}/oauth/token?client_id=${import.meta.env.VITE_CLIENT_ID}&client_secret=${import.meta.env.VITE_CLIENT_SECRET}&grant_type=password&number=` + state.number + '&code=' + inputValue, {
+    const res = await fetch(`${import.meta.env.VITE_BASE_URL}oauth/token?client_id=${import.meta.env.VITE_CLIENT_ID}&client_secret=${import.meta.env.VITE_CLIENT_SECRET}&grant_type=password&number=` + state.number + '&code=' + inputValue, {
       method: 'POST',
     })
     const json = await res.json();

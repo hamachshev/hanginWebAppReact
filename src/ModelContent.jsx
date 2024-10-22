@@ -12,7 +12,7 @@ export default function ModalContent({onClose, titleText, buttonText, fieldText,
   };
 
   async function send_phone_number(e){
-    const  res = await fetch(`${import.meta.env.VITE_BASE_URL}/create?number=` + inputValue, {
+    const  res = await fetch(`${import.meta.env.VITE_BASE_URL}/create?number=` + inputValue, { //this might have an extra slash
       method: 'POST',
     })
 
@@ -24,13 +24,16 @@ export default function ModalContent({onClose, titleText, buttonText, fieldText,
   }
 
   async function send_code(e){
-    const res = await fetch(`${import.meta.env.VITE_BASE_URL}/oauth/token?client_id=${import.meta.env.VITE_CLIENT_ID}&client_secret=${import.meta.env.VITE_CLIENT_SECRET}&grant_type=password&number=` + number + '&code=' + inputValue, {
+    const res = await fetch(`${import.meta.env.VITE_BASE_URL}oauth/token?client_id=${import.meta.env.VITE_CLIENT_ID}&client_secret=${import.meta.env.VITE_CLIENT_SECRET}&grant_type=password&number=` + number + '&code=' + inputValue, {
       method: 'POST',
     })
     const json = await res.json();
     console.log(json)
-    Cookies.set('auth_token', json.access_token)
-    Cookies.set('uuid', json.uuid)
+    Cookies.set('auth_token', json.access_token, {expires: 30})
+    Cookies.set('uuid', json.uuid, {expires: 30})
+    Cookies.set('created_at', json.created_at, {expires: 30})
+    Cookies.set('expires_in', json.expires_in, {expires: 30})
+    Cookies.set('refresh_token', json.refresh_token, {expires: 30})
     if(json){
 
       onClose();

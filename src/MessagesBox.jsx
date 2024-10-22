@@ -11,6 +11,12 @@ export default function MessagesBox({selectedChat}){
     const textFieldRef = useRef(null)
     const messagesStreamRef = useRef(null)
 
+    const handleEnter= (e)=>{
+        if(e.key === 'Enter'){
+            sendMessage()
+        }
+    }
+
     useEffect(()=>{
         if(socketRef.current){
             socketRef.current.close();
@@ -39,7 +45,10 @@ export default function MessagesBox({selectedChat}){
           
           if (msg) {
             console.log("YOUVE GOT Mail!")
-              console.log(msg.message.message.body)
+              console.log(msg)
+              if(msg.message.messages){
+                setMessages(msg.message.messages)
+              }
               if(msg.message.message){
                 setMessages((messages) => [...messages, msg.message.message]);
               }
@@ -47,13 +56,28 @@ export default function MessagesBox({selectedChat}){
 
 
           
-    }},[selectedChat])
+    }
+        socketRef.current.onclose = function(e){
+            console.log("unsubscribe to websocket")
+            const msg = {
+              command:'unsubscribe',
+              identifier: JSON.stringify({
+                channel: 'ChatChannel',
+                id: selectedChat,
+            }),}
+      
+            socketRef.current.send(JSON.stringify(msg))
+        }
+},[selectedChat])
 
     useEffect(()=>{
         messagesStreamRef.current.scrollTop = messagesStreamRef.current.scrollHeight // https://www.geeksforgeeks.org/how-to-scroll-to-bottom-of-div-in-javascript/
     }, [messages])
 
     const sendMessage = (e)=> {
+        if(outgoingMessage === ""){
+            return
+        }
         console.log("sending message")
         const msg = {
             command:'message',
@@ -72,12 +96,13 @@ export default function MessagesBox({selectedChat}){
           socketRef.current.send(JSON.stringify(msg))
           textFieldRef.current.blur()
           textFieldRef.current.value = ""
+          setOutgoingMessage("")
     }
     
     return (
         <div className="message-box">
                 <div className="message-stream" ref={messagesStreamRef}>
-                    <div className="message-right">
+                    {/* <div className="message-right">
                         <div className="single-message-box-right">
                             <p className="message">hello how are you</p>
                             
@@ -96,7 +121,7 @@ export default function MessagesBox({selectedChat}){
                             <p className="message">great!! 🎉🎉🎉</p>
                             
                             </div>
-                    </div>
+                    </div> */}
                     {messages.map((message, key)=>{ //its item, index for some reason not key value
             return (
             <div className={`message-${message.user_uuid === Cookies.get('uuid')? "right" : "left"}`} key={key}>
@@ -109,7 +134,7 @@ export default function MessagesBox({selectedChat}){
         )}
                     </div>
                 <div className="inputbox"> 
-                    <input type="text" className="input" onChange={handleMessageInputChange} ref={textFieldRef}/>
+                    <input type="text" className="input" onChange={handleMessageInputChange} ref={textFieldRef} onKeyDown={handleEnter}/>
                     <div className="send-button" onClick={sendMessage}>
                     
                     </div>
