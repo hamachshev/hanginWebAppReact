@@ -117,16 +117,23 @@ export default function MessagesBox({selectedChat}){
                     </div>
 
                     <div className="message-right">
+                        <div className='individual-message-box'>
+                            
                         <div className="single-message-box-right">
                             <p className="message">great!! 🎉🎉🎉</p>
                             
+                            </div>
+                            <p>Aharon Seidman</p>
                             </div>
                     </div> */}
                     {messages.map((message, key)=>{ //its item, index for some reason not key value
             return (
             <div className={`message-${message.user_uuid === Cookies.get('uuid')? "right" : "left"}`} key={key}>
+                <div className={`individual-message-box-${message.user_uuid === Cookies.get('uuid')? "right" : "left"}`}>
                 <div className={`single-message-box-${message.user_uuid === Cookies.get('uuid')? "right" : "left"}`}>
                     <p className="message"> {message.body}</p>
+                </div>
+                <p>{message.user_uuid === Cookies.get('uuid')? "" : ((message.first_name ? message.first_name : "") + " " + (message.last_name ? message.last_name : ""))}</p>
                 </div>
             </div>
             )
