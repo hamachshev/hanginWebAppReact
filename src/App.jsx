@@ -1,11 +1,5 @@
-import React, { useState } from 'react';
-import {BrowserRouter as Router, Routes, Route, Link, useLocation} from 'react-router-dom';
-import GetOTP from "./getOTP"
-import SubmitOTP from './SubmitOTP';
-import ChatsPage from './ChatsPage'
-import ChatPage from './ChatPage';
-
-import Testing from './Testing'
+import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
+import HomePage from './HomePage'
 
 const App = () => {
 
@@ -14,7 +8,7 @@ const App = () => {
 
       
   <Routes>
-    <Route path='/' element = {<Testing/>}/>
+    <Route path='/' element = {<HomePage/>}/>
   </Routes>
   
   </Router>

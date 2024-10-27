@@ -7,7 +7,7 @@ import Sidebar from "./Sidebar";
 import MessagesBox from "./MessagesBox";
 import Cookies from 'js-cookie';
 
-export default function Testing(){
+export default function HomePage(){
     const [showGetOTP, setShowGetOTP] = useState(false)
     const [showInputOTP, setShowInputOTP] = useState(false)
     const [number, setNumber] = useState(0)
