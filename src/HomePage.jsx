@@ -15,15 +15,17 @@ export default function HomePage(){
     const [chats, setChats] = useState([])
     const [socket, setSocket] = useState()
     const [selectedChat, setSelectedChat] = useState(null)
+    const [messages, setMessages] = useState([])
 
 
 
     useEffect(()=>{
-      
-        const socket = new WebSocket(import.meta.env.VITE_WEBSOCKET_URL + Cookies.get('auth_token')) 
+       console.log("auth tokemn " + Cookies.get('auth_token'));
+        
+        var socket = new WebSocket(import.meta.env.VITE_WEBSOCKET_URL + Cookies.get('auth_token')) 
         socket.onopen = function (e){
           console.log("connected to websocket")
-          const msg = {
+          const msg = { //https://stackoverflow.com/questions/35320791/how-to-use-actioncable-as-api
             command:'subscribe',
             identifier: JSON.stringify({
               channel: 'ChatsChannel'
@@ -36,12 +38,12 @@ export default function HomePage(){
           
           if(msg.type === "disconnect" && msg.reason === "unauthorized"){
             async function fetchAuthIfRefresh() {
-              //     //this function should be called anytime we send in the authcode
-                  
-                    const timestamp = new Date().getTime() // https://stackoverflow.com/questions/8047616/get-a-utc-timestamp
+
+                    print("getting new auth token")
+                    // const timestamp = new Date().getTime() // https://stackoverflow.com/questions/8047616/get-a-utc-timestamp
                     const url =`${import.meta.env.VITE_BASE_URL}oauth/token?client_id=${import.meta.env.VITE_CLIENT_ID}&client_secret=${import.meta.env.VITE_CLIENT_SECRET}&grant_type=refresh_token&refresh_token=${Cookies.get("refresh_token")}`
                     console.log(url)
-                    if(parseInt(Cookies.get("created_at")) + parseInt(Cookies.get("expires_in")) < timestamp  /* seconds in a day*/){
+                    // if(parseInt(Cookies.get("created_at")) + parseInt(Cookies.get("expires_in")) < timestamp  /* seconds in a day*/){
                       const res = await fetch(url, {
                         method: 'POST',
                       })
@@ -49,14 +51,17 @@ export default function HomePage(){
                       console.log(json)
                       if(json.access_token){
                         Cookies.set('auth_token', json.access_token, {expires: 30})
-                        Cookies.set('uuid', Cookies.get('uuid'), {expires: 30})
                         Cookies.set('created_at', json.created_at, {expires: 30})
                         Cookies.set('expires_in', json.expires_in, {expires: 30})
                         Cookies.set('refresh_token', json.refresh_token, {expires: 30})
                         setShowGetOTP(false)
-                      }
-                    }
-                    return
+                        setGetChats(true)
+                        }
+                      
+                    
+                  
+                    // }
+                    // return
                 
                 }
                 if(Cookies.get('auth_token') === "undefined" || Cookies.get('auth_token') === undefined){
@@ -91,6 +96,16 @@ export default function HomePage(){
                 setChats((chats)=>chats.filter((chat)=>chat != msg.message.deleteChat))
                 
               }
+              
+                console.log("YOUVE GOT Mail!")
+                  console.log(msg)
+                  if(msg.message.messages){
+                    setMessages(msg.message.messages)
+                  }
+                  if(msg.message.message){
+                    setMessages((messages) => [...messages, msg.message.message]);
+                  }
+              
           }
 
           setSocket(socket);
@@ -138,7 +153,7 @@ export default function HomePage(){
         </div>
         <div className="bottomBox">
             <Sidebar {...{ socket, chats, setSelectedChat, selectedChat}}/>
-            <MessagesBox {...{selectedChat, socket}}/>
+            <MessagesBox {...{selectedChat, socket, messages}}/>
             
         </div>
     </div> 

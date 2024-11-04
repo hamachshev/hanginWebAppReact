@@ -1,13 +1,13 @@
 import {useState, useEffect, useRef} from 'react'
 import Cookies from 'js-cookie';
-export default function MessagesBox({selectedChat}){
+export default function MessagesBox({selectedChat, socket, messages}){
     const [outgoingMessage, setOutgoingMessage] = useState('')
-    const [messages, setMessages] = useState([])
+
     const handleMessageInputChange = (e) =>{
         setOutgoingMessage(e.target.value)
     }
 
-    const socketRef = useRef(null)
+    // const socketRef = useRef(null)
     const textFieldRef = useRef(null)
     const messagesStreamRef = useRef(null)
 
@@ -18,46 +18,49 @@ export default function MessagesBox({selectedChat}){
     }
 
     useEffect(()=>{
-        if(socketRef.current){
-            socketRef.current.close();
-        }
-        socketRef.current = new WebSocket(import.meta.env.VITE_WEBSOCKET_URL + Cookies.get('auth_token')) 
-        socketRef.current.onopen = function (e){
-          console.log("connected to websocket")
+        // if(socketRef.current){
+        //     socketRef.current.close();
+        // }
+        // socketRef.current = new WebSocket(import.meta.env.VITE_WEBSOCKET_URL + Cookies.get('auth_token')) 
+        // socketRef.current.onopen = function (e){
+        //   console.log("connected to websocket")
           const msg = {
             command:'subscribe',
             identifier: JSON.stringify({
               channel: 'ChatChannel',
               id: selectedChat,
-          }),}
+          })}
     
-          socketRef.current.send(JSON.stringify(msg))
-        }
-        socketRef.current.onmessage = function(e) {            
-          const msg = JSON.parse(e.data);
+        //   socketRef.current.send(JSON.stringify(msg))
+        if(socket != null)
+            socket.send(JSON.stringify(msg))
+        
+        // socketRef.current.onmessage = function(e) {            
+        //   const msg = JSON.parse(e.data);
           
           
-          if (msg.type === "ping") {
-              return;
-          }
-          console.log("FROM RAILS: ", msg);
+        //   if (msg.type === "ping") {
+        //       return;
+        //   }
+        //   console.log("FROM RAILS: ", msg);
           
           
-          if (msg) {
-            console.log("YOUVE GOT Mail!")
-              console.log(msg)
-              if(msg.message.messages){
-                setMessages(msg.message.messages)
-              }
-              if(msg.message.message){
-                setMessages((messages) => [...messages, msg.message.message]);
-              }
-          }
+        //   if (msg) {
+        //     console.log("YOUVE GOT Mail!")
+        //       console.log(msg)
+        //       if(msg.message.messages){
+        //         setMessages(msg.message.messages)
+        //       }
+        //       if(msg.message.message){
+        //         setMessages((messages) => [...messages, msg.message.message]);
+        //       }
+        //   }
 
 
           
-    }
-        socketRef.current.onclose = function(e){
+    
+        return () => { //cleanup, ie unsub from the current chat before subbing to a new one
+            if(socket){
             console.log("unsubscribe to websocket")
             const msg = {
               command:'unsubscribe',
@@ -66,7 +69,9 @@ export default function MessagesBox({selectedChat}){
                 id: selectedChat,
             }),}
       
-            socketRef.current.send(JSON.stringify(msg))
+            socket.send(JSON.stringify(msg))
+        }
+            
         }
 },[selectedChat])
 
@@ -93,7 +98,7 @@ export default function MessagesBox({selectedChat}){
           })
         }
     
-          socketRef.current.send(JSON.stringify(msg))
+          socket.send(JSON.stringify(msg))
           textFieldRef.current.blur()
           textFieldRef.current.value = ""
           setOutgoingMessage("")
