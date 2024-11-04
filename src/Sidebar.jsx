@@ -15,12 +15,26 @@ export default function Sidebar({socket, chats,setSelectedChat, selectedChat}) {
         socket.send(JSON.stringify(msg))
       }
     return (
-        <div className="sidebar">
-        <div className="add-new-chat-box">
-            <div className="add-new-chat">
-                                +
+      <div className="sidebar-container">
+
+         <div className="onlineUsersList">
+            <div className="user">
+              <div className="image"></div>
+              <p className="name"> Name</p>
+            </div>
+            <div className="user">
+              <div className="image"></div>
+              <p className="name"> Name</p>
+            
             </div>
         </div>
+
+        <div className="sidebar">
+          <div className="add-new-chat-box">
+            <div className="add-new-chat">+</div></div>
+       
+        
+        
         <div className="chat" onClick={handleNewChat}/>
         {chats.map((chat)=>{
           return (
@@ -36,7 +50,29 @@ export default function Sidebar({socket, chats,setSelectedChat, selectedChat}) {
             }>{chat}</div>
           )
         })}
-        <div className="chat"/>
+        <div className="chat">
+                    <div class="circle-container">
+              <div class="circle">
+                <img src="https://picsum.photos/200" />
+                <p>Circle 1</p>
+              </div>
+              <div class="circle">
+                <img src="https://picsum.photos/200" />
+                <p>Circle 1</p>
+              </div>
+              <div class="circle">
+                <img src="https://picsum.photos/200" />
+                <p>Circle 1</p>
+              </div>
+              <div class="circle">
+                <img src="https://picsum.photos/200" />
+                <p>Circle 1</p>
+              </div>
+            </div>
+
+          </div>
     </div>
+    </div>
+
     )
 }

@@ -69,13 +69,16 @@ html, body, #root{
     // flex-direction: column;
     // align-items: center;
     flex: 0 0 210px;
+    display: flex;
+    flex-direction: column;
     background-color: #032E66;
     border-radius: 24px;
-    padding: 30px;
-    padding-top: 20px;
+    // padding: 30px;
+    // padding-top: 20px;
     overflow:auto; 
-    margin-right: 50px;
-    height: 590px;
+    // margin-right: 50px;
+    // height: 590px;
+    
 
   
 }
@@ -99,7 +102,7 @@ html, body, #root{
     margin-top: 15px;
     border-radius: 24px;
     display: flex;
-    justify-content: center;
+    justify-content: start;
     align-items: center;
     height: 53px;
     font-family: Arial, Helvetica, sans-serif;
@@ -107,6 +110,7 @@ html, body, #root{
     color: #DAEFFB;
     // flex: 0 1 9%;
     width: 100%;
+
     background-color: #063F78;
 }
 
@@ -374,12 +378,131 @@ html, body, #root{
     display: none;
 
   }
+
+  .onlineUsersList{
+    border-radius: 24px;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    height: 53px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: medium;
+    color: #DAEFFB;
+    // flex: 0 1 9%;
+    width: 100%;
+    overflow-x: scroll;
+    gap: 10px;  
+    mask-image: linear-gradient(to right, rgba(0,0,0,1) 80%, rgba(0,0,0,0)); // https://developer.mozilla.org/en-US/docs/Web/CSS/mask-image https://stackoverflow.com/questions/15597167/css-opacity-gradient
+
+
+  }
+
+  .onlineUsersList > .user {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    background-color: #063F78;
+    border-radius: 30px;
+    padding: 7px;
+    
+
+    
+  }
+
+  .user > .image {
+    border-radius: 50px;
+    background-color: rgb(61, 58, 198);
+    height: 40px;
+    width: 40px;
+
+
+  }
+  .user > .name {
+
+    padding: 10px;
+    padding-left: 7px;
+    transition: display 1000ms linear;
+  }
+
+
+  .sidebar-container {
+
+    flex: 0 0 210px;
+    flex-direction: column;
+    height: 100%;
+    background-color: #032E66;
+    border-radius: 24px;
+    padding: 30px;
+
+    overflow:auto; 
+    margin-right: 50px;
+    height: 590px;
+
+    
+
+  }
+
+  /* the circles css was made by cha tgp t and edited by me. the prompt was make me css and html for overlapping circles and those cirlces but when you hover over a circle it expands to a pill shape pushing the rest of the circles down in a row and coming out from under the circles it is under */
+.circle-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    position: relative;
+    margin-left: 5px;
+  }
+  
+  /* Style for each circle */
+  .circle {
+    width: 45px;
+    height: 45px;
+    border-radius: 100px;
+    background-color: #08204F;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    margin-right: -30px; /* Negative margin to overlap circles */
+    transition: all 0.3s ease;
+    position: relative;
+    box-shadow: -5px 0px 8px rgba(0, 0, 0, 0.316);
+  }
+  
+  /* Image styling */
+  .circle > img {
+    width: 45px;
+    height: 45px;
+  
+    border-radius: 50%;
+  }
+  
+  /* Hidden text styling */
+  .circle > p {
+    visibility: hidden;
+    opacity: 0;
+    margin-left: 10px; /* Adds space between the image and text */
+    transition: opacity 0.3s ease;
+    white-space: nowrap;
+  }
+  
+  /* Hover effect on circle */
+  .circle:hover {
+    width: 150px;
+    border-radius: 100px;
+  }
+  
+  /* Reveal text on hover with smooth transition */
+  .circle:hover > p {
+    visibility: visible;
+    opacity: 1;
+  }
+  
   
   @media only screen and (max-width: 950px) {
 
 
-    .sidebar{
+    .sidebar-container{
         display: none;
+       
     }
 
   }
