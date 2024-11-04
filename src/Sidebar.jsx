@@ -68,6 +68,10 @@ export default function Sidebar({socket, chats,setSelectedChat, selectedChat}) {
                 <img src="https://picsum.photos/200" />
                 <p>Circle 1</p>
               </div>
+
+
+              <p className="chatTitle">Swimming</p>
+              
             </div>
 
           </div>
