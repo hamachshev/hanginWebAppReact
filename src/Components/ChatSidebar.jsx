@@ -1,3 +1,4 @@
+import styles from "../Css/ChatSidebar.module.css"
 import UserBubble from "./UserBubble"
 
 export default function ChatSidebar({chats, selectedChat, setSelectedChat}) {
@@ -6,13 +7,13 @@ export default function ChatSidebar({chats, selectedChat, setSelectedChat}) {
         {chats.map((chat)=>{
             console.log(chat)
             return (
-                          <div className={`chat ${selectedChat? (selectedChat.id === chat.id ? "selectedChat" : ""): ""}`}
+                          <div className={`${styles.chat} ${selectedChat? (selectedChat.id === chat.id ? styles.selectedChat : ""): ""}`}
                           key={chat.id} onClick={(e)=> { 
                             setSelectedChat(chat)
                           }
                 
                           }>
-                        <div className="circle-container">
+                        <div className={styles.circleContainer}>
                             
                             {chat.users.map((user)=>{
                                 return (
@@ -25,7 +26,7 @@ export default function ChatSidebar({chats, selectedChat, setSelectedChat}) {
                         
                         
                         
-                        <p className="chatTitle">{chat.id}</p>
+                        <p className={styles.chatTitle}>{chat.id}</p>
                         </div>
                     </div>
             )

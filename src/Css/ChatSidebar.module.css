@@ -1,0 +1,47 @@
+.chat{
+    margin-top: 15px;
+    border-radius: 24px;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    height: 53px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: medium;
+    color: #DAEFFB;
+    /* flex: 0 1 9%; */
+    width: 100%;
+
+    background-color: #063F78;
+}
+
+ /* the circles css was made by cha tgp t and edited by me. the prompt was make me css and html for overlapping circles and those cirlces but when you hover over a circle it expands to a pill shape pushing the rest of the circles down in a row and coming out from under the circles it is under */
+ .circle-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    position: relative;
+    margin-left: 5px;
+    overflow-x: scroll;
+    width: 100%;
+    background-color: none;
+    border-radius: 24px;
+    text-overflow: ellipsis;
+
+  }
+  
+ 
+
+  .chatTitle {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: medium;
+    color: #DAEFFB;
+    padding-left: 35px;
+    opacity: 1;
+    transition: opacity 0.7s ease;
+  }
+
+  .selectedChat{
+    outline-style: solid;
+    outline-color: white;
+    outline-width: 2px;
+  }

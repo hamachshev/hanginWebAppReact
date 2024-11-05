@@ -1,3 +1,4 @@
+import styles from '../Css/MessagesBox.module.css'
 import {useState, useEffect, useRef} from 'react'
 import Cookies from 'js-cookie';
 export default function MessagesBox({selectedChat, socket, messages}){
@@ -105,8 +106,8 @@ export default function MessagesBox({selectedChat, socket, messages}){
     }
     
     return (
-        <div className="message-box">
-                <div className="message-stream" ref={messagesStreamRef}>
+        <div className={styles.messageBox}>
+                <div className={styles.messageStream} ref={messagesStreamRef}>
                     {/* <div className="message-right">
                         <div className="single-message-box-right">
                             <p className="message">hello how are you</p>
@@ -133,10 +134,10 @@ export default function MessagesBox({selectedChat, socket, messages}){
                     </div> */}
                     {messages.map((message, key)=>{ //its item, index for some reason not key value
             return (
-            <div className={`message-${message.user_uuid === Cookies.get('uuid')? "right" : "left"}`} key={key}>
-                <div className={`individual-message-box-${message.user_uuid === Cookies.get('uuid')? "right" : "left"}`}>
-                <div className={`single-message-box-${message.user_uuid === Cookies.get('uuid')? "right" : "left"}`}>
-                    <p className="message"> {message.body}</p>
+            <div className={message.user_uuid === Cookies.get('uuid')?  styles.messageRight: styles.messageLeft} key={key}>
+                <div className={message.user_uuid === Cookies.get('uuid')? styles.individualMessageBoxRight: styles.individualMessageBoxLeft}>
+                <div className={message.user_uuid === Cookies.get('uuid')? styles.singleMessageBoxRight : styles.singleMessageBoxLeft}>
+                    <p className={styles.message}> {message.body}</p>
                 </div>
                 <p>{message.user_uuid === Cookies.get('uuid')? "" : ((message.first_name ? message.first_name : "") + " " + (message.last_name ? message.last_name : ""))}</p>
                 </div>
@@ -145,10 +146,12 @@ export default function MessagesBox({selectedChat, socket, messages}){
         }
         )}
                     </div>
-                <div className="inputbox"> 
-                    <input type="text" className="input" onChange={handleMessageInputChange} ref={textFieldRef} onKeyDown={handleEnter}/>
-                    <div className="send-button" onClick={sendMessage}>
-                    
+                <div className={styles.inputbox}> 
+                    <input type="text" className={styles.input} onChange={handleMessageInputChange} ref={textFieldRef} onKeyDown={handleEnter}/>
+                    <div className={styles.sendButton} onClick={sendMessage}>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
+                            <path fill="#DAEFFB" d="M214.6 41.4c-12.5-12.5-32.8-12.5-45.3 0l-160 160c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L160 141.2 160 448c0 17.7 14.3 32 32 32s32-14.3 32-32l0-306.7L329.4 246.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-160-160z"/>
+                        </svg>
                     </div>
                 </div>
 

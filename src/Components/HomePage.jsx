@@ -1,8 +1,8 @@
-import "./reset.css"
-import "./css.less"
+import "../Css/reset.css"
+import "../css.less"
 import { useState, useEffect, useRef } from "react";
 import { createPortal } from 'react-dom';
-import ModalContent from "./ModelContent";
+import Modal from "./Modal";
 import Sidebar from "./Sidebar";
 import MessagesBox from "./MessagesBox";
 import Cookies from 'js-cookie';
@@ -144,7 +144,7 @@ export default function HomePage(){
     return(
     <>
     {showGetOTP && createPortal(
-        <ModalContent onClose={(number) => {
+        <Modal onClose={(number) => {
             setNumber(number)
             setShowGetOTP(false)
             setShowInputOTP(true)
@@ -158,7 +158,7 @@ export default function HomePage(){
       )}
 
       {showInputOTP && createPortal(
-        <ModalContent onClose={() => {
+        <Modal onClose={() => {
             setShowInputOTP(false)
             setGetChats(true)
         }}

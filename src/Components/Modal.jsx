@@ -1,10 +1,11 @@
 import { useState } from "react";
 import Cookies from 'js-cookie';
+import styles from '../Css/Modal.module.css'
 
 
 
 
-export default function ModalContent({onClose, titleText, buttonText, fieldText, type, number}) {
+export default function Modal({onClose, titleText, buttonText, fieldText, type, number}) {
 
   const [inputValue, setInputValue] = useState(''); 
   const handleInputChange = (event) => {
@@ -41,8 +42,8 @@ export default function ModalContent({onClose, titleText, buttonText, fieldText,
       
   };
     return (
-        <div className="modal-background">
-      <div className="modal">
+        <div className={styles.modalBackground}>
+      <div className={styles.modal}>
         <img src='/images/hangin.svg'/>
         <p>{titleText}</p>
         <input type="text" onChange={handleInputChange} placeholder={fieldText}/>

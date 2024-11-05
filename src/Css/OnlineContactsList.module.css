@@ -1,0 +1,65 @@
+.onlineUsersList{
+    border-radius: 24px;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    height: 53px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: medium;
+    color: #DAEFFB;
+     /* flex: 0 1 9%; */
+    width: 100%;
+    overflow-x: scroll;
+    gap: 7px;
+    mask-image: linear-gradient(to right, rgba(0,0,0,1) 80%, rgba(0,0,0,0)); /* https://developer.mozilla.org/en-US/docs/Web/CSS/mask-image https://stackoverflow.com/questions/15597167/css-opacity-gradient */
+
+
+  }
+
+
+  .onlineUsersList > .user {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    background-color: #063F78;
+    border-radius: 30px;
+    padding: 7px;
+    
+    
+
+    
+  }
+
+   /* the circles css was made by cha tgp t and edited by me. the prompt was make me css and html for overlapping circles and those cirlces but when you hover over a circle it expands to a pill shape pushing the rest of the circles down in a row and coming out from under the circles it is under */
+ .circle-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    position: relative;
+    margin-left: 5px;
+    overflow-x: scroll;
+    width: 100%;
+    background-color: none;
+    border-radius: 24px;
+    text-overflow: ellipsis;
+
+  }
+
+
+
+
+
+  .user > .image {
+    border-radius: 50px;
+    background-color: rgb(61, 58, 198);
+    height: 40px;
+    width: 40px;
+
+
+  }
+  .user > .name {
+
+    padding: 10px;
+    padding-left: 7px;
+    transition: display 1000ms linear;
+  }
