@@ -455,6 +455,7 @@ html, body, #root{
     width: 100%;
     background-color: none;
     border-radius: 24px;
+    text-overflow: ellipsis;
 
   }
   
@@ -475,7 +476,6 @@ html, body, #root{
     // box-shadow: rgba(149, 157, 165, 0.3) 0px 12px 48px 0px;
     // box-shadow: -5px 0px 15px rgb(57, 57, 57);
   
-    
     overflow: hidden;
    
   }
@@ -492,14 +492,23 @@ html, body, #root{
   /* Hidden text styling */
   .circle > p {
     visibility: hidden;
+    font-size: small;
     opacity: 0;
     margin-left: 10px; /* Adds space between the image and text */
     transition: opacity 0.3s ease;
     white-space: nowrap;
+
+    display: inline-block; //need this for text overflow elipsis -- chatgpt
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100px; /* Set to desired maximum width */
+
   }
   
   /* Hover effect on circle */
   .circle:hover {
+
     width: 150px;
     border-radius: 100px;
   }

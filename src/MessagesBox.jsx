@@ -28,7 +28,7 @@ export default function MessagesBox({selectedChat, socket, messages}){
             command:'subscribe',
             identifier: JSON.stringify({
               channel: 'ChatChannel',
-              id: selectedChat,
+              id: selectedChat ? selectedChat.id : "",
           })}
     
         //   socketRef.current.send(JSON.stringify(msg))
@@ -66,7 +66,7 @@ export default function MessagesBox({selectedChat, socket, messages}){
               command:'unsubscribe',
               identifier: JSON.stringify({
                 channel: 'ChatChannel',
-                id: selectedChat,
+                id: selectedChat ? selectedChat.id : "",
             }),}
       
             socket.send(JSON.stringify(msg))
@@ -88,7 +88,7 @@ export default function MessagesBox({selectedChat, socket, messages}){
             command:'message',
             identifier: JSON.stringify({
               channel: 'ChatChannel',
-              id: selectedChat,
+              id: selectedChat.id,
           }),
           data: JSON.stringify({
             action: 'speak',
