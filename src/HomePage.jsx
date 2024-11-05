@@ -16,6 +16,7 @@ export default function HomePage(){
     const [socket, setSocket] = useState()
     const [selectedChat, setSelectedChat] = useState(null)
     const [messages, setMessages] = useState([])
+    const [onlineContacts, setOnlineContacts] = useState([])
 
 
 
@@ -85,15 +86,41 @@ export default function HomePage(){
                 console.log(msg.message.chats)
               }
               if(msg.message.chat){
-                setChats((chats)=>[msg.message.chat.id, ...chats])
+                setChats((chats)=>[msg.message.chat, ...chats])
               }
               if(msg.message.ownChat){
-                setChats((chats)=>[...chats, msg.message.ownChat])
+                setChats((chats)=>[msg.message.ownChat,...chats])
                 // navigate("/chat/" + msg.message.ownChat)
               }
               if(msg.message.deleteChat){
             
-                setChats((chats)=>chats.filter((chat)=>chat != msg.message.deleteChat))
+                setChats((chats)=>chats.filter((chat)=>chat.id != msg.message.deleteChat))
+                
+              }
+              if(msg.message.updateChat){
+            
+                setChats((chats)=>[
+                  msg.message.updateChat,
+                  ...chats.filter((chat)=>chat.id != msg.message.updateChat.id), 
+                  ])
+                
+              }
+
+              if(msg.message.contactsOnline){
+            
+                setOnlineContacts(msg.message.contactsOnline)
+                
+              }
+
+              if(msg.message.contactOnline){
+            
+                setOnlineContacts((contacts)=>[msg.message.contactOnline, ...contacts])
+                
+              }
+
+              if(msg.message.contactOffline){
+            
+                setOnlineContacts((contacts)=> contacts.filter((contact)=> contact.uuid !== msg.message.contactOffline))
                 
               }
               
@@ -152,7 +179,7 @@ export default function HomePage(){
 </svg>
         </div>
         <div className="bottomBox">
-            <Sidebar {...{ socket, chats, setSelectedChat, selectedChat}}/>
+            <Sidebar {...{ socket, chats, setSelectedChat, selectedChat, onlineContacts}}/>
             <MessagesBox {...{selectedChat, socket, messages}}/>
             
         </div>

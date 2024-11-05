@@ -1,5 +1,6 @@
 import ChatSidebar from "./ChatSidebar"
-export default function Sidebar({socket, chats,setSelectedChat, selectedChat}) {
+import OnlineContactsList from "./OnlineContactsList"
+export default function Sidebar({socket, chats,setSelectedChat, selectedChat, onlineContacts}) {
     const handleNewChat = (e) => {
         const msg = {
           
@@ -18,17 +19,7 @@ export default function Sidebar({socket, chats,setSelectedChat, selectedChat}) {
     return (
       <div className="sidebar-container">
 
-         <div className="onlineUsersList">
-            <div className="user">
-              <div className="image"></div>
-              <p className="name"> Name</p>
-            </div>
-            <div className="user">
-              <div className="image"></div>
-              <p className="name"> Name</p>
-            
-            </div>
-        </div>
+         <OnlineContactsList {...{onlineContacts}}/>
 
         <div className="sidebar">
           <div className="add-new-chat-box">
