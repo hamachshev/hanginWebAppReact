@@ -1,0 +1,64 @@
+.header { 
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    margin-left: 0;
+    flex: 0 1 10%;
+    
+}
+
+.logo {
+    width: 105.261px;
+    height: 34.164px;
+    padding-left: 20px;
+    flex-shrink: 0;
+
+    
+}
+
+
+
+.settings {
+    cursor: pointer;
+    width: 53.635px;
+    height: 53.635px;
+    flex-shrink: 0;
+    background-color: #063F78;
+    border-radius: 100px;
+}
+
+.settings-container {
+    position: relative;
+}
+
+
+
+
+/* .edit-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: red;
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+}
+
+.edit-button > svg{
+    width: 10px;
+  height: 10px;
+} */
+
+
+
+/* .name-box > p {
+    margin-bottom: -1px;
+} */
+
+
+
+/* .name-box > .input {
+    margin-bottom: 3px;
+} */
+

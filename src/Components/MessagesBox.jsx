@@ -12,7 +12,7 @@ export default function MessagesBox({selectedChat, socket, messages}){
     const textFieldRef = useRef(null)
     const messagesStreamRef = useRef(null)
 
-    const handleEnter= (e)=>{
+    const handleEnter = (e)=>{
         if(e.key === 'Enter'){
             sendMessage()
         }

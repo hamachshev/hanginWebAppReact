@@ -1,0 +1,120 @@
+.settings-pane {
+    display: flex;
+    flex-direction: column;
+    gap: 0px;
+    position: absolute;
+    height: auto;
+    width: auto;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    background-color: #063F78;
+    top: 63px;
+    right: -10px;
+    border-radius: 24px;
+    box-shadow: rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px
+}
+
+.edit-button {
+    cursor: pointer;
+    flex-grow: 0;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 15px;
+    width: 15px;
+    background-color: #0a61b9;
+    border-radius: 50%;
+    margin-left: 20px;
+    overflow: hidden;
+}
+
+.edit-logo {
+    
+    width: 50%;
+    height: 50%;
+  }
+
+.edit-button-wrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: end;
+    width: 100%;
+}
+
+.name-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: small;
+    color: #DAEFFB;
+    gap: 0px;
+    width: 135.5px;
+    white-space: nowrap;
+}
+
+.profile-photo {
+    background-color: rgb(131, 42, 232);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+.input {
+    border: none;
+    background-color: transparent;
+    border-radius: 24px;
+    /* padding-left: 20px;
+    padding-right: 20px; */
+    font-family:Arial, Helvetica, sans-serif;
+    font-size: small;
+    color: #DAEFFB;
+    /* width: 65px; */
+    /* margin-right: 5px;
+    padding-top: 5px;
+    padding-bottom: 5px; */
+    margin-bottom: -3px;
+    padding-bottom: 0px;
+    padding-top: 0px;
+    margin-top: 0px;
+}
+
+.input::placeholder{
+    color: #DAEFFB;
+}
+
+.input:focus::placeholder{
+    color: #95a2a9;
+}
+.input:hover {
+    /* background-color: #053667;
+    padding: 3px;
+    padding-left: 10px; */
+}
+
+.input:focus {
+    outline: none;
+    /* outline-style: solid;
+    outline-color: white;
+    outline-width: 2px; */
+
+
+}
+
+.wrapper-name-and-photo{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: start;
+    gap: 10px;
+    margin-right: 15px;
+    margin-top: -15px;
+}
+.wrapper-name-and-photo-not-shown-editing {
+    display: none;
+}

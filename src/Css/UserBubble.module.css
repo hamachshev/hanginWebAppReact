@@ -59,7 +59,7 @@
     opacity: 1;
   }
 
-  .circle:hover ~ .chatTitle {
+  .circle:hover ~ p {
     display: none;
     opacity: 0;
   }

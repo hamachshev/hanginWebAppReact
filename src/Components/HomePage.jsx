@@ -6,6 +6,7 @@ import Modal from "./Modal";
 import Sidebar from "./Sidebar";
 import MessagesBox from "./MessagesBox";
 import Cookies from 'js-cookie';
+import Header from "./Header";
 
 export default function HomePage(){
     const [showGetOTP, setShowGetOTP] = useState(false)
@@ -172,12 +173,7 @@ export default function HomePage(){
       )}
       
      <div className="flexbox-container">  
-        <div className="header">
-            <img className="logo" src='/images/hangin.svg'/>
-            <svg className="settings" xmlns="http://www.w3.org/2000/svg" width="54" height="54" viewBox="0 0 54 54" fill="none">
-  <circle cx="27.1292" cy="27.1141" r="26.8177" fill="#063F78"/>
-</svg>
-        </div>
+        <Header/>
         <div className="bottomBox">
             <Sidebar {...{ socket, chats, setSelectedChat, selectedChat, onlineContacts}}/>
             <MessagesBox {...{selectedChat, socket, messages}}/>
