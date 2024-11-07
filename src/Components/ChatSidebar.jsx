@@ -26,7 +26,7 @@ export default function ChatSidebar({chats, selectedChat, setSelectedChat}) {
                         
                         
                         
-                        <p className={styles.chatTitle}>{chat.id}</p>
+                        <p className={styles.chatTitle}>{chat.name}</p>
                         </div>
                     </div>
             )

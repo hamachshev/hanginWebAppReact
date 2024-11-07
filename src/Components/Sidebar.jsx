@@ -1,8 +1,33 @@
+import { useState } from "react"
 import styles from "../Css/Sidebar.module.css"
 import ChatSidebar from "./ChatSidebar"
 import OnlineContactsList from "./OnlineContactsList"
+import { useOutsideClick } from "outsideclick-react";
 export default function Sidebar({socket, chats,setSelectedChat, selectedChat, onlineContacts}) {
-    const handleNewChat = (e) => {
+  
+  const [editing, setEditing] = useState(false)
+  const [chatName, setChatName] = useState(''); 
+  const handleInputChange = (event) => {
+    setChatName(event.target.value); 
+  };
+
+  const handleEnterSubmit = (e)=>{
+    if(e.key === 'Enter'){
+      handleNewChat(e)
+      setEditing(false)
+    }
+}
+
+  const ref = useOutsideClick(()=>{
+    setEditing(false)
+    
+    console.log("outside.....")
+})
+  const handleEditNewChat = (e) => {
+    setEditing(true)
+    // handleNewChat(e)
+  }
+  const handleNewChat = (e) => {
         const msg = {
           
             command: "message",
@@ -10,7 +35,8 @@ export default function Sidebar({socket, chats,setSelectedChat, selectedChat, on
               channel: 'ChatsChannel'
           }),
             "data": JSON.stringify({
-              action: 'createChat'
+              action: 'createChat',
+              name: chatName
           })
             
         }
@@ -28,7 +54,11 @@ export default function Sidebar({socket, chats,setSelectedChat, selectedChat, on
        
         
         
-        <div className={styles.chat} onClick={handleNewChat}/>
+        <div className={`${styles.chat} ${styles.newChat}`} onClick={handleEditNewChat} ref={ref}>
+          {!editing &&  <p>New Chat</p>}
+          {editing && <input type="text" autoFocus onChange={handleInputChange} onKeyDown={handleEnterSubmit} placeholder="Enter chat name"/>}
+         
+          </div>
         <ChatSidebar {...{setSelectedChat, chats, selectedChat}} />
           
     </div>

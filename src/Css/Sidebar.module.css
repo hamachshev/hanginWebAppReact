@@ -70,6 +70,24 @@
     background-color: #063F78;
 }
 
+.new-chat {
+    justify-content: center;
+    cursor: pointer;
+}
+
+.new-chat > input:focus, .new-chat > input{
+    background-color: transparent;
+    text-align: center;
+    color: #DAEFFB;
+    border: none;
+    padding: 0;
+    outline: none;
+}
+
+.new-chat > input:focus::placeholder {
+    color: #032755;
+}
+
   @media only screen and (max-width: 950px) {
 
 
