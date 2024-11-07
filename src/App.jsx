@@ -1,5 +1,6 @@
 import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 import HomePage from './Components/HomePage'
+import FileUpload from './Components/FileUpload';
 
 const App = () => {
 
@@ -9,6 +10,7 @@ const App = () => {
       
   <Routes>
     <Route path='/' element = {<HomePage/>}/>
+    <Route path='/file' element = {<FileUpload/>}/>
   </Routes>
   
   </Router>

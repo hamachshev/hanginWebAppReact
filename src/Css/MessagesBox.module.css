@@ -70,6 +70,7 @@
 }
 
 .send-button {
+    cursor: pointer;
     flex-grow: 0;
     flex-shrink: 0;
     display: flex;
