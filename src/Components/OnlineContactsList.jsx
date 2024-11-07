@@ -13,7 +13,7 @@ export default function OnlineContactsList({onlineContacts}){
             //   <p className="name"> {contact.first_name + " " + contact.last_name}</p>
             // </div>
 
-            <div className={styles.circleContainer}>
+            <div className={styles.circleContainer} key={user.uuid}>
                             
                             
                             

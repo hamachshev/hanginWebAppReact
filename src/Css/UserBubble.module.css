@@ -1,65 +1,79 @@
- /* the circles css was made by cha tgp t and edited by me. the prompt was make me css and html for overlapping circles and those cirlces but when you hover over a circle it expands to a pill shape pushing the rest of the circles down in a row and coming out from under the circles it is under */
+ /* the circles css was made by cha tgp t and edited by me. the prompt was make me css and html for overlapping circles and those cirlces but when you hover over a circle it expands to a pill shape pushing the rest of the circles down in a row and coming out from under the circles it is under
  /* Style for each circle */
  .circle {
-    width: 45px;
-    height: 45px;
-    border-radius: 50%;
-    background-color: #01537C;
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: start;
-    margin-right: -30px; /* Negative margin to overlap circles */
-    transition: all 0.3s ease;
-    position: relative;
-    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
-    /* box-shadow: rgba(149, 157, 165, 0.3) 0px 12px 48px 0px; */
-    /* box-shadow: -5px 0px 15px rgb(57, 57, 57); */
-  
-    overflow: hidden;
-   
-  }
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  background-color: #01537C;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  margin-right: -30px; /*Negative margin to overlap circles */
+  transition: all 0.3s ease;
+  position: relative;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  /* box-shadow: rgba(149, 157, 165, 0.3) 0px 12px 48px 0px; */
+  /* box-shadow: -5px 0px 15px rgb(57, 57, 57); */
 
-  
-  /* Image styling */
-  .circle > img {
-    width: 35px;
-    height: 35px;
-    margin-left: 5px;
-    border-radius: 50%;
-  }
-  
-  /* Hidden text styling */
-  .circle > p {
-    visibility: hidden;
-    font-size: small;
-    opacity: 0;
-    margin-left: 10px; /* Adds space between the image and text */
-    transition: opacity 0.3s ease;
-    white-space: nowrap;
+  overflow: hidden;
+ 
+}
 
-    display: inline-block; /* need this for text overflow elipsis -- chatgpt */
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    max-width: 100px; /* Set to desired maximum width */
 
-  }
-  
-  /* Hover effect on circle */
-  .circle:hover {
+/* Image styling */
+.circle > img {
+  width: 30px;
+  height: 30px;
+  margin-left: 7.5px;
+  border-radius: 50%;
+  aspect-ratio: 1/1; /* dont know why was playing around and thins amde it not scale weridly on hover 😁*/
+  object-fit: cover;
+}
 
-    width: 150px;
-    border-radius: 100px;
-  }
-  
-  /* Reveal text on hover with smooth transition */
-  .circle:hover > p {
-    visibility: visible;
-    opacity: 1;
-  }
+/* .circle > svg {
+  width: 35px;
+  height: 35px;
+  margin-left: 5px;
+  border-radius: 50%;
+} */
 
-  .circle:hover ~ p {
-    display: none;
-    opacity: 0;
-  }
+/* Hidden text styling */
+.circle > p {
+  /* visibility: hidden; */
+  font-size: small;
+  opacity: 0;
+  /* Adds space between the image and text */
+  transition: opacity 0.3s ease;
+  white-space: nowrap;
+
+  display: inline-block; /* need this for text overflow elipsis -- chatgpt */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100px;
+  width: 0px;
+  margin-left: 0px;
+   /* Set to desired maximum width */
+
+}
+
+/* Hover effect on circle */
+.circle:hover {
+
+  width: 150px;
+  border-radius: 100px;
+}
+
+/* Reveal text on hover with smooth transition */
+.circle:hover > p {
+  visibility: visible;
+  opacity: 1;
+  margin-left: 10px;
+  width: auto;
+}
+
+.circle:hover ~ p {
+  display: none;
+  opacity: 0;
+} 
