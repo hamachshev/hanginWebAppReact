@@ -21,15 +21,25 @@
 
 .settings {
     cursor: pointer;
-    width: 53.635px;
-    height: 53.635px;
+    position: relative;
+    width: 45px;
+    height: 45px;
     flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     background-color: #063F78;
-    border-radius: 100px;
+    border-radius: 50%;
 }
 
+.settings > svg {
+    height: 40%;
+    height: 40%;
+}
 .settings-container {
-    position: relative;
+    
+    width: 53.635px;
+    height: 53.635px;
 }
 
 
