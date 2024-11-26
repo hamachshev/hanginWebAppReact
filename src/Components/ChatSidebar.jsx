@@ -5,7 +5,7 @@ export default function ChatSidebar({chats, selectedChat, setSelectedChat}) {
     return (
         <>
         {chats.map((chat)=>{
-            console.log(chat)
+            
             return (
                           <div className={`${styles.chat} ${selectedChat? (selectedChat.id === chat.id ? styles.selectedChat : ""): ""}`}
                           key={chat.id} onClick={(e)=> { 

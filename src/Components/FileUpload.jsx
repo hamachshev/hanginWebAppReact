@@ -14,7 +14,7 @@ function FileUpload() {
     const formData = new FormData();
     formData.append('user[profile_picture]', image);
 
-    fetch('http://localhost:3000/user/addProfilePicture?access_token='+ Cookies.get("auth_token"), {
+    fetch(`${import.meta.env.VITE_BASE_URL}addProfilePicture?access_token=`+ Cookies.get("auth_token"), {
       method: 'POST',
       body: formData,
     })
